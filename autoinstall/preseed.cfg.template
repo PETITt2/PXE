@@ -1,0 +1,60 @@
+### Localisation
+d-i debian-installer/locale string __LOCALE__
+d-i keyboard-configuration/xkb-keymap select __KEYBOARD__
+
+### Reseau
+d-i netcfg/choose_interface select auto
+d-i netcfg/get_hostname string __HOSTNAME__
+d-i netcfg/get_domain string local
+d-i hw-detect/load_firmware boolean false
+
+### Miroir des paquets
+d-i mirror/country string manual
+d-i mirror/http/hostname string __MIRROR_HOST__
+d-i mirror/http/directory string __MIRROR_DIR__
+d-i mirror/http/proxy string
+d-i mirror/suite string __SUITE__
+d-i apt-setup/use_mirror boolean true
+# Pas de miroir securite/maj (peut etre indisponible en isole)
+d-i apt-setup/services-select multiselect
+d-i apt-setup/security_host string
+d-i apt-setup/disable-cdrom-entries boolean true
+
+### Comptes
+d-i passwd/root-login boolean false
+d-i passwd/user-fullname string __FULLNAME__
+d-i passwd/username string __USERNAME__
+d-i passwd/user-password-crypted password __PWHASH__
+d-i user-setup/allow-password-weak boolean true
+
+### Horloge
+d-i clock-setup/utc boolean true
+d-i time/zone string __TIMEZONE__
+d-i clock-setup/ntp boolean false
+
+### Partitionnement automatique (tout le disque, LVM) -- EFFACE LE DISQUE
+d-i partman-auto/method string lvm
+d-i partman-auto-lvm/guided_size string max
+d-i partman-lvm/device_remove_lvm boolean true
+d-i partman-md/device_remove_md boolean true
+d-i partman-lvm/confirm boolean true
+d-i partman-lvm/confirm_nooverwrite boolean true
+d-i partman-auto/choose_recipe select atomic
+d-i partman/default_filesystem string ext4
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+
+### Paquets : bureau + utilitaires + SSH
+tasksel tasksel/first multiselect __TASKS__
+d-i pkgsel/include string network-manager
+d-i pkgsel/upgrade select none
+popularity-contest popularity-contest/participate boolean false
+
+### GRUB
+d-i grub-installer/only_debian boolean true
+d-i grub-installer/bootdev string default
+
+### Fin : redemarrage automatique
+d-i finish-install/reboot_in_progress note
