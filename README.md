@@ -88,13 +88,3 @@ Clonezilla (capture/maintenance), Boot disque local.
 - [docs/AUTOINSTALL.md](docs/AUTOINSTALL.md) — méthode alternative : installation automatisée (Ubuntu/Debian) et ses conditions d'emploi.
 - [docs/HISTORIQUE.md](docs/HISTORIQUE.md) — approches essayées et pourquoi elles ont été abandonnées.
 
-## Avertissement
-
-ShredOS efface définitivement les disques, et l'entrée de déploiement écrase le
-disque du poste sans confirmation. Vérifier quel poste démarre sur quelle entrée
-avant de lancer. Pour éviter tout effacement accidentel, l'entrée par défaut du
-menu peut être placée sur "Boot disque local" (voir docs/INSTALL.md).
-
-## Licence
-
-MIT — voir [LICENSE](LICENSE).
